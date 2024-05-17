@@ -21,6 +21,7 @@ fun ChatApp(vm: ChatViewModel) {
             arguments = listOf(navArgument("username") { type = NavType.StringType })
         ) { backStackEntry ->
             val username = backStackEntry.arguments?.getString("username") ?: ""
+            vm.setUsername(username)
             ChatScreen(username, vm)
         }
     }

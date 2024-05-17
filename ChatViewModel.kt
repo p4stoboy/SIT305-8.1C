@@ -13,8 +13,15 @@ import kotlinx.serialization.json.*
 
 
 class ChatViewModel : ViewModel() {
+    private val _username = mutableStateOf("")
     private val _chatState = mutableStateOf(ChatState(emptyList()))
     val chatState: State<ChatState> = _chatState
+
+    fun setUsername(username: String) {
+        _username.value = username
+        // add greeting message
+        _chatState.value = ChatState(listOf(ChatMessage("assistant", "Hello, $username - how can I help today?")))
+    }
 
     fun sendMessage(username: String, messageText: String) {
         val userMessage = ChatMessage("user", messageText)
