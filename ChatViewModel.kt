@@ -67,7 +67,8 @@ class ChatViewModel : ViewModel() {
             val choices = jsonResponse["choices"] as? JsonArray
             val firstChoice = choices?.firstOrNull() as? JsonObject
             val message = firstChoice?.get("message") as? JsonObject
-            val content = message?.get("content")?.toString()
+            // this avoids terrible string formatting than can result from using toString() on the json object
+            val content = message?.get("content")?.jsonPrimitive?.content
 
             return content ?: throw Exception("Content field is missing or invalid")
         }

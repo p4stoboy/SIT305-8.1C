@@ -46,6 +46,7 @@ fun ChatScreen(username: String, vm: ChatViewModel) {
             verticalArrangement = Arrangement.Bottom, // Align items to the bottom
             reverseLayout = true // Reverse the order of items
         ) {
+//            MessageBubble(ChatMessage(content = "Hi " + username + ", how can I help you today?", role = "assistant"))
             items(vm.chatState.value.messages.reversed()) { message -> // Reverse the list of messages
                 MessageBubble(message)
             }
